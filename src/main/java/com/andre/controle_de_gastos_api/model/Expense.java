@@ -1,14 +1,16 @@
 package com.andre.controle_de_gastos_api.model;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -33,9 +35,15 @@ public class Expense {
     private String title;
     private String description;
     @NotNull
+    @DecimalMin(value = "0.01", message = "O valor deve ser maior que zero")
     private BigDecimal amount;
-    @NotNull
-    private Date date;
+    @NotBlank(message = "A data é obrigatória")
+    private String date;
     @NotBlank
     private String paymentMethod;
+    @NotBlank
+    private String category;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

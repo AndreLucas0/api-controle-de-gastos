@@ -26,7 +26,7 @@ services:
       - postgres #faz com que o pgadmin seja executado apenas depois do banco de dados ser executado 
 
 volumes:
-  postgres_data_gastos:
+  postgres_data_gastos:/
 
   #Postgres não tem interface visual nativa, assim como todos os outros bancos de dados. 
   #E  ntão devemos acessar pelo software ou por uma interface visual, ex: pgadmin
