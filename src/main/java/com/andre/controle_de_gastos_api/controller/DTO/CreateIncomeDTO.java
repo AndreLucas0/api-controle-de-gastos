@@ -6,6 +6,6 @@ import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record CreateExpenseDTO(@NotBlank String title, String description, @NotNull BigDecimal amount, @NotNull LocalDate date, @NotBlank String paymentMethod, @NotBlank String category) {
+public record CreateIncomeDTO(@NotBlank String title, String description, @NotNull BigDecimal amount, @NotNull LocalDate date, @NotBlank String source) {
     
 }

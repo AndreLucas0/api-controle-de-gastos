@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.andre.controle_de_gastos_api.controller.DTO.CreateExpenseDTO;
@@ -59,6 +60,12 @@ public class ExpenseController {
             return ResponseEntity.notFound().build();
         }
     } 
+
+    @GetMapping("/month")
+    public ResponseEntity<List<ExpenseResponseDTO>> getMonthlyExpenses(@AuthenticationPrincipal User user, @RequestParam int year, @RequestParam int month) {
+        return ResponseEntity.ok(expenseService.getExpensesByMonth(user.getId(), year, month));
+    }
+
 
     @PutMapping("/{expenseId}")
     public ResponseEntity<Void> updateExpenseById(@PathVariable("expenseId") UUID expenseId, @RequestBody UpdateExpenseDTO updateExpenseDTO, @AuthenticationPrincipal User user) {

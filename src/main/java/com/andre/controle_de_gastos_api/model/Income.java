@@ -21,13 +21,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "expenses")
+@Table(name = "incomes")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Expense {
+public class Income {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -41,10 +41,9 @@ public class Expense {
     @NotNull(message = "A data é obrigatória")
     private LocalDate date;
     @NotBlank
-    private String paymentMethod;
-    @NotBlank
-    private String category;
+    private String source;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
 }

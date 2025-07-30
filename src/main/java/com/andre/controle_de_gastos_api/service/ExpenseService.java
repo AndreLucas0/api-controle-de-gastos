@@ -1,5 +1,6 @@
 package com.andre.controle_de_gastos_api.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -62,6 +63,24 @@ public class ExpenseService {
             .toList();
     }
 
+    public List<ExpenseResponseDTO> getExpensesByMonth(UUID userId, int year, int month) {
+    LocalDate start = LocalDate.of(year, month, 1);
+    LocalDate end = start.withDayOfMonth(start.lengthOfMonth());
+    
+    return expenseRepository.findByUserIdAndDateBetween(userId, start, end)
+            .stream()
+            .map(expense -> new ExpenseResponseDTO(
+                    expense.getId(),
+                    expense.getTitle(),
+                    expense.getDescription(),
+                    expense.getAmount(),
+                    expense.getDate(),
+                    expense.getPaymentMethod(),
+                    expense.getCategory()
+            ))
+            .toList();
+    }
+
     public void updateExpenseById(UUID expenseId, UpdateExpenseDTO updateExpenseDTO, UUID userId) {
         var expense = expenseRepository.findByIdAndUserId(expenseId, userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Despesa não encontrada"));;
@@ -100,14 +119,8 @@ public class ExpenseService {
 
     public void deleteById(UUID expenseId, UUID userId) {
         var expense = expenseRepository.findByIdAndUserId(expenseId, userId)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Despesa não encontrada"));;
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Despesa não encontrada"));
 
         expenseRepository.delete(expense);    
-    }
-
-    public void validateOwnership(Expense expense, UUID userId) {
-        if (!expense.getUser().getId().equals(userId)) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Você não possui acesso a este recurso.");
-        }
     }
 }
