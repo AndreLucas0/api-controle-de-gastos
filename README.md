@@ -2,8 +2,7 @@
 
 Este é um projeto de controle de finanças, que tem como objetivo auxiliar os usuários à ampliarem a visão sobre seus gastos, possibilitando um maior controle das entradas e saídas monetárias.
 A aplicação permite o funcionário cadastrar, visualizar, atualizar e excluir
-despesas e ganhos, que são organizados por período, possibilitando geração de relatórios
-financeiros e análises comparativas.
+despesas e ganhos, que são organizados por período, possibilitando análises comparativas.
 
 ---
 
