@@ -4,7 +4,6 @@ Este é um projeto de controle de finanças para ampliar a visão do usuários s
 A aplicação permite o funcionário cadastrar, visualizar, atualizar e excluir
 despesas e ganhos, que são organizados por período, possibilitando geração de relatórios
 financeiros e análises comparativas.
-Breve descrição do projeto, explicando **o que ele faz** e **qual problema resolve**.
 
 ---
 
