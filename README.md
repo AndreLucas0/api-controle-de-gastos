@@ -20,8 +20,6 @@ Breve descrição do projeto, explicando **o que ele faz** e **qual problema res
 ```bash
 .
 ├── src/              # Código-fonte principal
-├── docs/             # Documentação
-├── tests/            # Testes automatizados
 ├── .gitignore
 ├── README.md
 └── ...
